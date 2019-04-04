@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.github.kyan</groupId>
-    <artifactId>qs-backtesting</artifactId>
+    <artifactId>qs-backtester</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>qs-backtesting</name>
+    <name>qs-backtester</name>
     <description>A naive event-driven backtesting system inspired by QuantStart</description>
 
     <!-- Properties -->
