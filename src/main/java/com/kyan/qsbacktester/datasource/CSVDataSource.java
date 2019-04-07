@@ -1,7 +1,7 @@
 package com.kyan.qsbacktester.datasource;
 
 
-import com.kyan.qsbacktester.model.Bar;
+import com.kyan.qsbacktester.trading.model.Bar;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 import lombok.extern.slf4j.Slf4j;
@@ -19,6 +19,8 @@ import java.util.*;
 
 /**
  * CSV data source
+ *
+ * @author kyan
  */
 @Slf4j
 public class CSVDataSource implements DataSource {
@@ -34,14 +36,14 @@ public class CSVDataSource implements DataSource {
     public void loadBarsFromCSV(String dirPath, String... symbols) {
         for (String symbol : symbols) {
             try {
-                log.info("Loads hist data of symbol: {}", symbol);
+                log.info("Loads historical data of symbol: {}", symbol);
                 String filePath = dirPath + File.separator + symbol + ".csv";
                 Reader reader = Files.newBufferedReader(Paths.get(filePath));
                 CSVReader csvReader = new CSVReaderBuilder(reader).withSkipLines(1).build();
                 String[] nextRecord;
                 Map<LocalDateTime, Bar> bars = new LinkedHashMap<>();
                 while ((nextRecord = csvReader.readNext()) != null) {
-                    //Date,Open,High,Low,Close,Adj Close,Volume,Period
+                    //Format: Date,Open,High,Low,Close,Adj Close,Volume,Period
                     Bar bar = new Bar(symbol);
                     LocalDate ld = LocalDate.parse(nextRecord[0], dateTimeFormatter);
                     bar.setDateTime(LocalDateTime.of(ld, LocalTime.of(0, 0)));

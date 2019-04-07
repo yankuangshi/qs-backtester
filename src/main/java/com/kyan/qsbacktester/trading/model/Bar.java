@@ -1,4 +1,4 @@
-package com.kyan.qsbacktester.model;
+package com.kyan.qsbacktester.trading.model;
 
 import lombok.Data;
 
